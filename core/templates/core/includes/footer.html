@@ -1,0 +1,46 @@
+{% load static %}
+<footer class="bg-secondary bg-dark mt-3 overflow-hidden footer">
+    <div class="container p-0">
+      <div class="social d-flex justify-content-center p-3">
+       
+        <div class="social_icon">
+        <a href="https://www.instagram.com/glowhiteherbals/" target='blank_'><img src="{% static 'core/images/instagram.png' %}" alt="" class="img-fluid"></a>
+        </div>
+        <div class="social_icon">
+          <a href="https://www.facebook.com/GloWhiteHerbals/"><img src="{% static 'core/images/SVG/facebook.svg' %}" alt="" class="img-fluid"></a>
+        </div>
+      </div>
+
+      <div class="row gx-1 text-center text-white">
+
+        <div class="col-6 colmd-6 col-lg-4">
+          <h5>About Company</h5>
+          <ul>
+            <li class=text-center>GloWhite Herbals Based in Kolkata, it was Established in 1997, as a Salon Eco Products
+              Manufacturer <br><a href="{% url 'about-company' %}" class="text-info ">read more</a></li>
+          </ul>
+        </div>
+        <div class="col-6 colmd-6 col-lg-4">
+          <h5>Products</h5>
+          <ul>
+          {% for category in links|slice:":3"%}
+            <li class=text-center><a href="{% url 'products_by_category' category.slug %}" class="text-capitalize">{{category.category_name}}</a></li>
+        {% endfor %}
+            <li class=text-center><a href="{% url 'store' %}" class="text-info">View all</a></li>
+          </ul>
+        </div>
+        <div class="col-6 colmd-6 col-lg-4">
+          <h5>Get In Touch</h5>
+          <ul>
+            <li class=text-center><a href="{% url 'contac_us' %}">Contact Us</a></li>
+            <li class=text-center><a href="mailto:amaan77866@gmail.com">Info@glowhiteherbals.com</a></li>
+           
+          </ul>
+        </div>
+      </div>
+        <div class="footer-bottom">
+          <p class='text-center fs-5'> © 2021 GloWhite Herbals</p>
+        </div>
+    </div>
+    
+  </footer>

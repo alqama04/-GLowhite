@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %} {{ block.super }}
+    <link rel="stylesheet" href="{% static 'core/css/about.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+  <section class="about_us">
+    <div class="container">
+      <div class="about_us_content">
+        <h1 class="fw-bold ">About The Company</h1>
+        <p> <b class="text-dark">GloWhite Herbals</b> Based in Kolkata, it was Established in 1997, as a Salon Eco Products Manufacturer. That time
+          we are among the very few skin care Manufacturers based in India. A little start Goes big as we are currently 
+          serving more than 2.5 million salons in South India. </p>
+          <p>
+          We have worked with the best <b class="text-dark">Dermatologists</b> to formulate our products and produce what we do the best we at.
+          GloWhite Herbals ARE Dedicated toward producing skin care that REALLY works! skin care that is Effective and
+          is gentle on skin. All of our products are produced in a healthy environment and are Researched and developed
+          By Highly experienced Dermatologists.
+        </p>
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

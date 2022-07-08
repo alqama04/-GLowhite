@@ -1,0 +1,114 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %} {{ block.super }}
+<link rel="stylesheet" href="{% static 'accounts/css/contact_us.css' %}">
+{% endblock css %}
+
+{% block content %}
+{% if messages %}
+ {% for message in messages %}
+<div {% if message.tags %}  class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert" {% endif %}>
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+  <section class="contact_us container-fluid">
+    <div class="container h-100">
+      <div class="contact_detail rounded-2 mx-3">
+        <div class="contact_header text-center mt-2 px-2">
+          <h3 class="fw-bold m-0 pt-3">Contact Us</h3>
+          <p class="fs-5 text-center ">we are ready to answer all your questions</p>
+        </div>
+
+        <div class="d-flex  flex-column px-lg-5">
+         
+          <div class=" contact_form">
+            <form action="" method="POST" class="m-1" novalidate>
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-12 col-lg-6 p-0">
+                  <div class="p-2">
+                  
+                    <label for="" class="fw-bold">Full Name</label>
+                    {{form.username}}
+                    <p class='error_messages'>{{form.errors.username|striptags}}</p>
+
+
+                  </div>
+                </div>
+           
+                <div class="col-12 col-lg-6 p-0">
+                  <div class="p-2">
+                    <label for="" class="fw-bold">email</label>
+                    {{form.email}}
+                    <p class='error_messages'>{{form.errors.email|striptags}}</p>
+
+                  </div>
+                </div>
+               
+                <div class="col-12 col-lg-12 p-0">
+                  <div class="p-2">
+                    <label for="" class="fw-bold">Subject</label>
+                     {{form.subject}}
+                      <p class='error_messages'>{{form.errors.subject|striptags}}</p>
+
+                  </div>
+                </div>
+               
+                <div class="col-12 col-lg-12 p-0">
+                  <div class="p-2">
+                    <label for="" class="fw-bold">Enter Your Message</label>
+                      {{form.message}}
+                    <p class='error_messages'>{{form.errors.message|striptags}}</p>
+                  </div>
+                </div>
+              </div>
+               <input type="submit" value="Send Message" class="btn btn-dark submit_button m-3 mx-0">
+            </form>
+          </div>
+
+          <div class="contact_info">
+            <div class="address d-flex m-1">
+              <div class="icon ">
+                <img src="{% static 'core/images/SVG/location.svg' %}" alt="" class="img-fluid mt-1">
+              </div>
+              <div class=" ps-5">
+                <strong class="text-center">GloWhite Herbals</strong>
+                <p class="text-center">Kolkata, India</p>
+              </div>
+            </div>
+          
+            <div class="address d-flex m-1">
+              <div class="icon ">
+                <img src="{% static 'core/images/SVG/telephone.svg' %}" alt="" class="img-fluid mt-1">
+              </div>
+              <div class=" ps-5 text-center p-2">
+               <a href="tel:+91 8188801116" class="text-decoration-none text-dark"> <strong class="text-center">+91 8188801116</strong></a>
+              </div>
+            </div>
+          
+            <div class="address d-flex m-1">
+              <div class="icon ">
+                <img src="{% static 'core/images/SVG/email.svg' %}" alt="" class="img-fluid mt-1">
+              </div>
+              <div class=" ps-5 text-center p-2">
+               <a href="mailto:amaan77866@gmail.com" class="text-decoration-none text-dark"> <strong class="text-center">info@glowhitehrebals.com</strong></a>
+              </div>
+            </div>
+			
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    </div>
+  </section>
+
+{% endblock content %}

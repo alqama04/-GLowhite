@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %} {{ block.super }}
+<link rel="stylesheet" href="{% static 'accounts/css/user_register_login.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+
+
+
+  <section class="container-fluid">
+    <div class="container h-100 mt-5 mb-5">
+    
+      <div class="user_registration_box shadow rounded m-auto">
+          <h3 class='text-center pt-3'>GloWhite Herblas</h3>
+          <h5 class='text-center text-warning'>Sign Up Here</h5>
+        
+          <form action="" method='POST' class='p-md-3'>
+           {% csrf_token %}
+          {% for fm in form %}
+          <div class="form-group">
+       
+            <label for = '{{fm.label|lower}}' id ='id_{{fm.label|lower}}' class='ps-1'>{{fm.label}}</label>
+            {{fm}}
+            <span class='text-danger'>{{fm.errors|striptags}}</span>
+          </div>
+          {% endfor %}
+
+          <input type="submit" value='Register' class='btn btn-dark ps-3 mt-3 pe-3'>
+        </form>
+
+        <p class ='text-center'>
+          <strong> Already have an Account ? <a href="{% url 'login' %}" class='text-warning'>Login</a> </strong></p>
+
+        </div>
+
+    </div>
+  </section>
+
+{% endblock content %}

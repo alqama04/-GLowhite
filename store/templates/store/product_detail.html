@@ -1,0 +1,251 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ block.super }}
+{% endblock title %}
+
+{% block css %} {{ block.super }}
+<link rel="stylesheet" href="{% static 'store/css/product_detail.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock css %}
+
+
+{% block content %}
+
+   <div class="container mt-2 mb-5">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-6 border-end">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="main_image text-center"> <img src="{{single_product.Product_image.url}}"
+                                id="main_product_image" class='img-fluid'>
+                        </div>
+                        <div class="thumbnail_images">
+                            <ul id="thumbnail d-flex">
+                                <li><img onclick="changeImage(this)"
+                                        src="" width="70" id="firstImg" class='img-fluid'></li>
+                               {% if single_product.image_gallery_1 %}
+                                <li><img onclick="changeImage(this)" src="{{single_product.image_gallery_1.url}}" width="70" class='img-fluid'>
+                                </li>
+                                {% endif %}
+                               {% if single_product.image_gallery_2 %}
+                                <li><img onclick="changeImage(this)" src="{{single_product.image_gallery_2.url}}" width="70" class='img-fluid'>
+                                </li>
+                                {% endif %}
+                               {% if single_product.image_gallery_3 %}
+                                <li><img onclick="changeImage(this)" src="{{single_product.image_gallery_3.url}}" width="70" class='img-fluid'>
+                                </li>
+                                {% endif %}
+                               {% if single_product.image_gallery_4 %}
+                                <li><img onclick="changeImage(this)" src="{{single_product.image_gallery_4.url}}"
+                                        width="70"></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 pb-0 right-side">
+                        <div class="d-flex flex-column">
+                            <h2 class="title text-capitalize">{{single_product.product_name}}</h2>
+                            <h3 class="text-uppercase">{{single_product.product_tagline}}</h3>
+                            <h6 class='ps-1'><span class='fw-bold'>{{single_product.avg_rate}}</span> <i class="fa fa-star text-warning fw-light" aria-hidden="true"></i></h6>
+                        </div>
+                        <div class="pr-2 content">
+                            <p>
+                                {{single_product.product_description}}
+                            </p>
+                            <p class="mt-1"><strong class='text-dark Ingredients '>Ingredients :</strong> {{single_product.ingredients}}</p>
+                        </div>
+                        <div class="prices d-flex align-items-center pt-2">
+                            <h3 class="amount px-1 text-decoration-line-through">Rs.{{single_product.price}}</h3>
+                            <h3 class="discounted_price px-3 text-danger">Rs.{{single_product.discounted_price}}</h3>
+                        </div>
+
+                        <div class="buttons mt-1 gap-3"> 
+						{% if single_product.is_available is True %}
+						<a href="{% if single_product.url %} {{single_product.url}} {% else %}  {% endif %}" target="_blank"><button class="btn btn-outline-dark">BuyNow</button>
+                            </a>
+						{% else %}
+						<button class='btn btn-dark text-white fw-bold'>Comming Soon </button>
+						{% endif %}
+                        </div>
+                        <div class="product_features">
+                            <ul class="collapsible">
+                                <li class="collapsible-item d-flex justify-content-end align-items-center mt-2 btn btn-outline-dark"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseItems">Features <span></span>
+                                </li>
+                            </ul>
+
+                            <div class="collapse" id="collapseItems">
+
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature1}}</p>
+                                </div>
+                              
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature2}}</p>
+                                </div>
+                               {% if single_product.Product_feature3 %}
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature3}}</p>
+                                </div>
+                               {% endif %}
+                              {% if single_product.Product_feature4 %}
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature4}}</p>
+                                </div>
+                              {% endif %}
+                              {% if single_product.Product_feature5 %}
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature5}}</p>
+                                </div>
+                                {% endif %}
+                                {% if single_product.Product_feature6 %}
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature6}}</p>
+                                </div>
+                               {% endif %}
+                               {% if single_product.Product_feature7 %}
+                                <div class="product-features-details d-flex">
+                                    <i class="check-img"><img src="{% static 'core/images/SVG/right-tick.svg' %}" alt=""
+                                            class="img-fluid"></i>
+                                    <p>{{single_product.Product_feature7}}</p>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+
+
+        {% comment %} reviews and rating {% endcomment %}
+
+    <div class="reviews mt-3">
+
+        
+
+        {% if not request.user.is_authenticated %}
+          <a href='{% url 'login' %}' class='bg-dark text-white p-1 ps-2 pe-2 text-decoration-underline'>Add Reviews</a>
+        
+      {% else %}   
+        <div class="review_box bg-white rounded">
+                <form action="{% url 'user_review' single_product.id %}" method='POST' class='p-2'>
+                 {% csrf_token %}
+                    <div class="rate">
+                        <input type="radio" name="rating" id="rating10" value='5' required><label for="rating10" title='5'></label>
+                        <input type="radio" name="rating" id="rating9" value='4.5' required><label for="rating9" title='4.5' class='half'></label>
+                        <input type="radio" name="rating" id="rating8" value='4' required><label for="rating8" title='4'></label>
+                        <input type="radio" name="rating" id="rating7" value='3.5' required><label for="rating7" title='3.5' class='half'></label>
+                        <input type="radio" name="rating" id="rating6" value='3' required><label for="rating6" title='3'></label>
+                        <input type="radio" name="rating" id="rating5" value='2.5' required><label for="rating5" title='2.5' class='half'></label>
+                        <input type="radio" name="rating" id="rating4" value='2' required><label for="rating4" title='2'></label>
+                        <input type="radio" name="rating" id="rating3" value='1.5' required><label for="rating3" title='1.5' class='half'></label>
+                        <input type="radio" name="rating" id="rating2" value='1' required><label for="rating2" title='1'></label>
+                        <input type="radio" name="rating" id="rating1" value='0.5' required><label for="rating1" title='0.5' class='half'></label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class=''>Subject</label>
+                        <input type="text" name='subject' class='form-control' id='subject'>
+                    </div>
+                    <div class="form-group">
+                        <label for="review" class=''>Opinion</label>
+                        <textarea name="reveiw" id="review"  rows="3" class='form-control'></textarea>
+                    </div>
+                    <div class='form-group'>
+                        <input type="submit" value="Submit Review" class=' text-white shadow p-1 bg-black mt-1'>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+
+
+            {% if reviews %}
+            <div class="user_review mt-3 p-2 bg-white rounded">
+               <div>
+                 {% for rw in reviews %}
+      
+                <h5 class=''>{{rw.user.username}}</h5>
+                <h6>{{rw.date}}</h6>
+                <div class='user_ratings'>
+                    <span class='text-warning'>
+                        <i class="fa fa-star{% if rw.rating == 0.5 %}-half-o{% elif rw.rating < 1 %}-o{% endif %}" aria-hidden="true"></i>               
+                        <i class="fa fa-star{% if rw.rating == 1.5 %}-half-o{% elif rw.rating < 2 %}-o{% endif %}" aria-hidden="true"></i>                
+                        <i class="fa fa-star{% if rw.rating == 2.5 %}-half-o{% elif rw.rating < 3 %}-o{% endif %}" aria-hidden="true"></i>                
+                        <i class="fa fa-star{% if rw.rating == 3.5 %}-half-o{% elif rw.rating < 4 %}-o{% endif %}" aria-hidden="true"></i>                
+                        <i class="fa fa-star{% if rw.rating == 4.5 %}-half-o{% elif rw.rating < 5 %}-o{% endif %}" aria-hidden="true"></i>                
+                    </span>
+                  {% if rw.subject %}
+                  <p >  <strong>{{rw.subject}}?</strong></p>
+                  {% endif %}
+                  <p class='text-align-baseline'>
+                      {{rw.reveiw}}
+                    </p>
+                </div>
+                <hr class='p-0 m-0'>
+                 {% endfor %}
+
+            </div> 
+            </div>
+            {% endif %}
+
+
+        </div>
+
+       {% if single_product.category %}
+
+      <div class="similar_products mt-3">
+      <h4 class='similar_categories_heading'>Products with similar categories</h4> 
+      <div class="row mt-3">
+                {% for category_product in single_product.category.product_set.all %}
+
+         <div class="col-12 col-md-6 col-lg-3 mt-2 p-3 rounded category_product_box">
+          <div class="category_products border overflow-hidden">
+            <a href="{{category_product.product_url}}">
+              <div class="product_category_img">
+                <img src="{{category_product.Product_image.url}}" alt="image" class="img-fluid">
+              </div>
+              <div class="about_category_product alet alert-light p-1 text-center text-dark">
+                <p>{{category_product.product_name}}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+      </div>
+    {% endif %}  
+    </div>    
+
+    <script>
+        var main_prodcut_image = document.getElementById('main_product_image');
+        function changeImage(element) {
+            main_prodcut_image.src = element.src;   
+        }
+        var fst = document.getElementById('firstImg')
+        fst.src = main_prodcut_image.src
+
+    </script> 
+
+    <script src="{% static 'store/js/product_detail.js' %}"></script>
+
+{% endblock content %}

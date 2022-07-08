@@ -1,0 +1,93 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}"
+      ><img src="{% static 'core/images/logo.png' %}" alt="" class="img-fluid"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar_id"
+      aria-controls="navbar_id"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar_id">
+      <ul class="navbar-nav m-auto">
+        {% for category in links %} {% if category.subcategory_set.all %}
+
+        <div class="dropdown">
+          <li
+            class="border-0 nav-link dropdown-toggle nav-item"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <a href="">{{category.category_name}}</a>
+          </li>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {% for subcategory in category.subcategory_set.all %}
+            <li>
+              <a
+                class="dropdown-item nav-link text-capitalize"
+                href="{{subcategory.subcategory_url}}"
+                >{{subcategory.subCategory_name}}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% else %}
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            href="{% url 'products_by_category' category.slug %}"
+            >{{category.category_name}}</a
+          >
+        </li>
+        {% endif %} {% endfor %}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           {% if request.user.is_authenticated %}
+            <span class='text-warning'>{{request.user.username|slice:':7'}}..</span>
+            {% else %}
+            <span class='text-warning'>Accounts</span>
+             
+            {% endif %}
+
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if not request.user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'user_registration' %}">Register</a></li>
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+          </ul>
+        </li>
+       
+
+      </ul>
+    </div>
+    <form action="{% url 'search' %}" method="GET" class="search-form">
+      <div class="search-box">
+        <input
+          type="search"
+          class="search-input"
+          placeholder="Search on GLoWhite Herbals"
+          name="keyword"
+        />
+        <div class="search-btn">
+          
+        </div> 
+      </div>
+    </form>
+  </div>
+</nav>

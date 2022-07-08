@@ -1,0 +1,36 @@
+ /* UserRegistration */
+ *{
+  /* font-family: var(--font-poppins); */
+  font-family: var(--font-scher);
+ }
+ .user_registration_box{
+    background: #fff;
+    position: relative;
+    width: 35%;
+
+  }
+
+  @media(max-width:750px){
+  .user_registration_box{
+    width: 90%!important;
+    margin: auto;
+    padding: 10px!important;
+  }
+  }
+
+.user_registration_box label{
+  font-size: .9em;
+  letter-spacing: 1.1px;
+  font-family: var(--font-poppins);
+}
+
+.user_registration_box .form-control{
+  box-shadow: none;
+  border: none;
+  border: 2px solid rgb(189, 190, 189);
+}
+
+.form-control:hover,
+  .form-control:focus{
+    border: 2px solid rgb(96, 99, 96);
+  }

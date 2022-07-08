@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block css %}{{ block.super }}
+  <link rel="stylesheet" href="{% static 'store/css/store.css' %}">
+{% endblock css %}
+
+{% block content %}
+     <section class="store">
+
+    <p class="p-3">total Item Found <b>{{product_count}}</b></p>
+
+
+    <div class="container px-lg-4">
+      <div class="row gx-3 gx-lg-4 gy-4 ">
+      {% if products %}
+      {% for product in products %}
+        <div class="col-12 col-md-6 col-lg-3  p-3 rounded store_box ">
+          <div class="store_item border overflow-hidden">
+            <a href="{{product.product_url}}">
+              <div class="store_img">
+                <img src="{{product.Product_image.url}}" alt="image" class="img-fluid">
+              </div>
+              <div class="about_store_product alet alert-light p-1 text-center text-dark">
+                <p>{{product.product_name}}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      {% else %}
+      </div>
+    </div>
+    <h4 class="text-center fw-bold m-5">No Items Found Please Try again</h4>
+  {% endif %}
+  </section>
+{% endblock content %}
